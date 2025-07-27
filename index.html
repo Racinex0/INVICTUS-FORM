@@ -31,14 +31,13 @@
         .btn-secondary { background: linear-gradient(45deg, var(--success-color), #2ecc71); }
         .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4); }
         
-        /* --- AJUSTE PARA CENTRAR BOTONES --- */
-        #regForm, #attForm {
-            text-align: center;
-        }
+        #regForm, #attForm { text-align: center; }
 
         .form-group { margin-bottom: 25px; text-align: left; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-color); font-size: 1rem; }
         .form-group input, .form-group select { width: 100%; padding: 15px 20px; border: 2px solid #e0e0e0; border-radius: 15px; font-size: 1rem; color: var(--text-color); background: white; transition: all 0.3s ease; }
+        .form-group input[type="date"] { color: var(--text-color); }
+        .form-group input[type="date"]:invalid { color: var(--text-light); }
         .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.1); }
         .na-btn { background: var(--text-light); color: white; border: none; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; margin-top: 8px; transition: all 0.3s ease; }
         .na-btn:hover { background: var(--text-color); }
@@ -93,9 +92,10 @@
                 <label for="phone" data-translate="labelPhone">📱 Teléfono</label>
                 <input type="tel" id="phone" required placeholder="Ej: 6123-4567">
             </div>
+            <!-- El usuario ve "Fecha de Nacimiento" con un calendario -->
             <div class="form-group">
-                <label for="labelAge">🎂 Edad</label>
-                <input type="number" id="age" required min="10" max="99" placeholder="Tu edad">
+                <label for="birthDate" data-translate="labelBirthDate">🎂 Fecha de Nacimiento</label>
+                <input type="date" id="birthDate" required>
             </div>
             <button type="submit" class="btn-primary" id="registerBtn" data-translate="registerBtnText">🚀 ¡Registrarme!</button>
             <div class="loader" id="registerLoader"><div class="spinner"></div><span data-translate="registerLoaderText">Registrando...</span></div>
@@ -104,7 +104,7 @@
 
     <div class="container hidden" id="attendanceForm">
         <button class="back-btn" id="backFromAttendance">←</button>
-        <div class="logo" data-translate="attLogo">ASISTENCIA</div>
+        <div class="logo" data-translate="attLogo" style="font-size: 2.2rem;">ASISTENCIA</div>
         <p class="subtitle" data-translate="attSubtitle">¡Qué bueno verte de nuevo! 😊</p>
         <form id="attForm">
             <div class="form-group">
@@ -153,7 +153,7 @@
                 genderM: "👨 Masculino",
                 genderF: "👩 Femenino",
                 labelPhone: "📱 Teléfono",
-                labelAge: "🎂 Edad",
+                labelBirthDate: "🎂 Fecha de Nacimiento", // Etiqueta para el campo de fecha
                 registerBtnText: "🚀 ¡Registrarme!",
                 registerLoaderText: "Registrando tu información... ⏳",
                 attLogo: "ASISTENCIA",
@@ -188,7 +188,7 @@
                 genderM: "👨 Male",
                 genderF: "👩 Female",
                 labelPhone: "📱 Phone",
-                labelAge: "🎂 Age",
+                labelBirthDate: "🎂 Date of Birth", // English label for date field
                 registerBtnText: "🚀 Register Me!",
                 registerLoaderText: "Registering your information... ⏳",
                 attLogo: "ATTENDANCE",
@@ -360,13 +360,17 @@
 
         document.getElementById('regForm').addEventListener('submit', (e) => {
             e.preventDefault();
+            // ***** CAMBIO REALIZADO AQUÍ *****
+            // Tomamos el valor del campo de fecha (id="birthDate")
+            // pero lo enviamos al script con la clave "edad".
+            // Así, el script original que espera "data.edad" funcionará sin cambios.
             submitData({
                 action: 'register',
                 invitadoPor: document.getElementById('invitedBy').value,
                 nombreApellido: document.getElementById('fullName').value,
                 genero: document.getElementById('gender').value,
                 telefono: document.getElementById('phone').value,
-                edad: document.getElementById('age').value
+                edad: document.getElementById('birthDate').value
             }, e.target);
         });
 
