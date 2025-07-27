@@ -73,15 +73,17 @@
         <form id="regForm">
             <div class="form-group">
                 <label for="invitedBy" data-translate="labelInvitedBy">👥 Invitado Por</label>
-                <input type="text" id="invitedBy" placeholder="¿Quién te invitó?">
+                <!-- CAMBIO: Se quita placeholder y se añade data-translate-placeholder -->
+                <input type="text" id="invitedBy" data-translate-placeholder="placeholderInvitedBy">
                 <button type="button" class="na-btn" id="naBtn" data-translate="naBtn">No aplica</button>
             </div>
             <div class="form-group">
                 <label for="fullName" data-translate="labelFullName">🏷️ Nombre y Apellido</label>
-                <input type="text" id="fullName" required placeholder="Tu nombre completo">
+                 <!-- CAMBIO: Se quita placeholder y se añade data-translate-placeholder -->
+                <input type="text" id="fullName" required data-translate-placeholder="placeholderFullName">
             </div>
             <div class="form-group">
-                <label for="gender" data-translate="labelGender">⚧️ Género</label>
+                <label for="gender" data-translate="labelGender">♀️♂️ Género</label>
                 <select id="gender" required>
                     <option value="" data-translate="genderDefault">Selecciona...</option>
                     <option value="M" data-translate="genderM">👨 Masculino</option>
@@ -90,9 +92,9 @@
             </div>
             <div class="form-group">
                 <label for="phone" data-translate="labelPhone">📱 Teléfono</label>
-                <input type="tel" id="phone" required placeholder="Ej: 6123-4567">
+                 <!-- CAMBIO: Se quita placeholder y se añade data-translate-placeholder -->
+                <input type="tel" id="phone" required data-translate-placeholder="placeholderPhone">
             </div>
-            <!-- El usuario ve "Fecha de Nacimiento" con un calendario -->
             <div class="form-group">
                 <label for="birthDate" data-translate="labelBirthDate">🎂 Fecha de Nacimiento</label>
                 <input type="date" id="birthDate" required>
@@ -109,7 +111,8 @@
         <form id="attForm">
             <div class="form-group">
                 <label for="phoneCheck" data-translate="labelPhoneCheck">📱 Tu Número de Teléfono</label>
-                <input type="tel" id="phoneCheck" required placeholder="El número con el que te registraste">
+                <!-- CAMBIO: Se quita placeholder y se añade data-translate-placeholder -->
+                <input type="tel" id="phoneCheck" required data-translate-placeholder="placeholderPhoneCheck">
             </div>
             <button type="submit" class="btn-secondary" id="checkBtn" data-translate="checkBtnText">🔍 Verificar Asistencia</button>
             <div class="loader" id="attendanceLoader"><div class="spinner"></div><span data-translate="attendanceLoaderText">Verificando...</span></div>
@@ -153,7 +156,7 @@
                 genderM: "👨 Masculino",
                 genderF: "👩 Femenino",
                 labelPhone: "📱 Teléfono",
-                labelBirthDate: "🎂 Fecha de Nacimiento", // Etiqueta para el campo de fecha
+                labelBirthDate: "🎂 Fecha de Nacimiento",
                 registerBtnText: "🚀 ¡Registrarme!",
                 registerLoaderText: "Registrando tu información... ⏳",
                 attLogo: "ASISTENCIA",
@@ -172,7 +175,12 @@
                 attendanceError: "No pudimos encontrar tu número. Por favor, regístrate si es tu primera vez. 😉",
                 offlineTitle: "Registro Guardado 💾",
                 offlineDetail: "No tienes conexión a internet. Guardamos tus datos y los enviaremos automáticamente cuando te conectes. ¡Nos vemos!",
-                syncNotification: "Se enviaron tus registros pendientes. ¡Gracias!"
+                syncNotification: "Se enviaron tus registros pendientes. ¡Gracias!",
+                // CAMBIO: Se añaden placeholders en español
+                placeholderInvitedBy: "¿Quién te invitó?",
+                placeholderFullName: "Tu nombre completo",
+                placeholderPhone: "Ej: 6123-4567",
+                placeholderPhoneCheck: "El número con el que te registraste"
             },
             en: {
                 welcomeTitle: "Is this your First Time at INVICTUS YOUTH? 🤔",
@@ -188,7 +196,7 @@
                 genderM: "👨 Male",
                 genderF: "👩 Female",
                 labelPhone: "📱 Phone",
-                labelBirthDate: "🎂 Date of Birth", // English label for date field
+                labelBirthDate: "🎂 Date of Birth",
                 registerBtnText: "🚀 Register Me!",
                 registerLoaderText: "Registering your information... ⏳",
                 attLogo: "ATTENDANCE",
@@ -207,7 +215,12 @@
                 attendanceError: "We couldn't find your number. Please register if this is your first time. 😉",
                 offlineTitle: "Registration Saved 💾",
                 offlineDetail: "You are currently offline. We've saved your data and will send it automatically when you're back online. See you!",
-                syncNotification: "Your pending registrations have been sent. Thank you!"
+                syncNotification: "Your pending registrations have been sent. Thank you!",
+                // CAMBIO: Se añaden placeholders en inglés
+                placeholderInvitedBy: "Who invited you?",
+                placeholderFullName: "Your full name",
+                placeholderPhone: "Ex: 123-456-7890",
+                placeholderPhoneCheck: "The number you registered with"
             }
         };
 
@@ -219,12 +232,22 @@
             screens[screenName]?.classList.remove('hidden');
         }
 
+        // CAMBIO: La función ahora también traduce los placeholders
         function updateLanguage() {
             const t = translations[currentLang];
+            
+            // Traduce textos normales
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.getAttribute('data-translate');
                 if (t[key]) el.textContent = t[key];
             });
+
+            // Traduce los placeholders de los inputs
+            document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-translate-placeholder');
+                if (t[key]) el.placeholder = t[key];
+            });
+
             document.documentElement.lang = currentLang;
             document.getElementById('langToggle').textContent = currentLang === 'es' ? 'ES' : 'EN';
         }
@@ -360,10 +383,6 @@
 
         document.getElementById('regForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            // ***** CAMBIO REALIZADO AQUÍ *****
-            // Tomamos el valor del campo de fecha (id="birthDate")
-            // pero lo enviamos al script con la clave "edad".
-            // Así, el script original que espera "data.edad" funcionará sin cambios.
             submitData({
                 action: 'register',
                 invitadoPor: document.getElementById('invitedBy').value,
