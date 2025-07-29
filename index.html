@@ -30,9 +30,7 @@
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(142, 68, 173, 0.4); }
         .btn-secondary { background: linear-gradient(45deg, var(--success-color), #2ecc71); }
         .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4); }
-        
         #regForm, #attForm { text-align: center; }
-
         .form-group { margin-bottom: 25px; text-align: left; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-color); font-size: 1rem; }
         .form-group input, .form-group select { width: 100%; padding: 15px 20px; border: 2px solid #e0e0e0; border-radius: 15px; font-size: 1rem; color: var(--text-color); background: white; transition: all 0.3s ease; }
@@ -53,6 +51,7 @@
         .language-toggle { position: absolute; top: 20px; right: 20px; background: rgba(255, 255, 255, 0.2); border: none; padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; color: black; backdrop-filter: blur(10px); }
         .pulse { animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .form-actions { text-align: center; margin-top: 30px; }
     </style>
 </head>
 <body>
@@ -73,13 +72,11 @@
         <form id="regForm">
             <div class="form-group">
                 <label for="invitedBy" data-translate="labelInvitedBy">👥 Invitado Por</label>
-                <!-- CAMBIO: Se quita placeholder y se añade data-translate-placeholder -->
                 <input type="text" id="invitedBy" data-translate-placeholder="placeholderInvitedBy">
                 <button type="button" class="na-btn" id="naBtn" data-translate="naBtn">No aplica</button>
             </div>
             <div class="form-group">
                 <label for="fullName" data-translate="labelFullName">🏷️ Nombre y Apellido</label>
-                 <!-- CAMBIO: Se quita placeholder y se añade data-translate-placeholder -->
                 <input type="text" id="fullName" required data-translate-placeholder="placeholderFullName">
             </div>
             <div class="form-group">
@@ -92,15 +89,20 @@
             </div>
             <div class="form-group">
                 <label for="phone" data-translate="labelPhone">📱 Teléfono</label>
-                 <!-- CAMBIO: Se quita placeholder y se añade data-translate-placeholder -->
                 <input type="tel" id="phone" required data-translate-placeholder="placeholderPhone">
             </div>
             <div class="form-group">
                 <label for="birthDate" data-translate="labelBirthDate">🎂 Fecha de Nacimiento</label>
                 <input type="date" id="birthDate" required>
             </div>
-            <button type="submit" class="btn-primary" id="registerBtn" data-translate="registerBtnText">🚀 ¡Registrarme!</button>
-            <div class="loader" id="registerLoader"><div class="spinner"></div><span data-translate="registerLoaderText">Registrando...</span></div>
+            <div class="form-group">
+                <label for="age" data-translate="labelAge">🔢 Edad</label>
+                <input type="number" id="age" required min="1" max="99" oninput="this.value=this.value.slice(0,2)" data-translate-placeholder="placeholderAge">
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary" id="registerBtn" data-translate="registerBtnText">🚀 ¡Registrarme!</button>
+                <div class="loader" id="registerLoader"><div class="spinner"></div><span data-translate="registerLoaderText">Registrando...</span></div>
+            </div>
         </form>
     </div>
 
@@ -111,11 +113,12 @@
         <form id="attForm">
             <div class="form-group">
                 <label for="phoneCheck" data-translate="labelPhoneCheck">📱 Tu Número de Teléfono</label>
-                <!-- CAMBIO: Se quita placeholder y se añade data-translate-placeholder -->
                 <input type="tel" id="phoneCheck" required data-translate-placeholder="placeholderPhoneCheck">
             </div>
-            <button type="submit" class="btn-secondary" id="checkBtn" data-translate="checkBtnText">🔍 Verificar Asistencia</button>
-            <div class="loader" id="attendanceLoader"><div class="spinner"></div><span data-translate="attendanceLoaderText">Verificando...</span></div>
+            <div class="form-actions">
+                <button type="submit" class="btn-secondary" id="checkBtn" data-translate="checkBtnText">🔍 Verificar Asistencia</button>
+                <div class="loader" id="attendanceLoader"><div class="spinner"></div><span data-translate="attendanceLoaderText">Verificando...</span></div>
+            </div>
         </form>
     </div>
 
@@ -138,8 +141,7 @@
     </div>
 
     <script>
-        // ¡IMPORTANTE! Pega aquí la URL de tu script implementado.
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzC6B1C387XPkLrZK2MxlbSjVoj-CsMYyvYBXa_Vx9VNrFsb9NqTGen53pljAUXakP0FA/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzX8uUIEvLm78FILS2ZyQlv4AZVXTLePh-rZFpvTZzG5UXRGUTvTMVK4NzjKWZHAowrWg/exec";
 
         const translations = {
             es: {
@@ -157,6 +159,7 @@
                 genderF: "👩 Femenino",
                 labelPhone: "📱 Teléfono",
                 labelBirthDate: "🎂 Fecha de Nacimiento",
+                labelAge: "🔢 Edad",
                 registerBtnText: "🚀 ¡Registrarme!",
                 registerLoaderText: "Registrando tu información... ⏳",
                 attLogo: "ASISTENCIA",
@@ -176,13 +179,13 @@
                 offlineTitle: "Registro Guardado 💾",
                 offlineDetail: "No tienes conexión a internet. Guardamos tus datos y los enviaremos automáticamente cuando te conectes. ¡Nos vemos!",
                 syncNotification: "Se enviaron tus registros pendientes. ¡Gracias!",
-                // CAMBIO: Se añaden placeholders en español
                 placeholderInvitedBy: "¿Quién te invitó?",
                 placeholderFullName: "Tu nombre completo",
                 placeholderPhone: "Ej: 6123-4567",
+                placeholderAge: "18",
                 placeholderPhoneCheck: "El número con el que te registraste"
             },
-            en: {
+            en: { // ===== TRADUCCIONES EN INGLÉS COMPLETAS =====
                 welcomeTitle: "Is this your First Time at INVICTUS YOUTH? 🤔",
                 yesBtnText: "😀 Yes, it's my first time",
                 noBtnText: "😎 No, I've been here before",
@@ -197,6 +200,7 @@
                 genderF: "👩 Female",
                 labelPhone: "📱 Phone",
                 labelBirthDate: "🎂 Date of Birth",
+                labelAge: "🔢 Age",
                 registerBtnText: "🚀 Register Me!",
                 registerLoaderText: "Registering your information... ⏳",
                 attLogo: "ATTENDANCE",
@@ -216,197 +220,35 @@
                 offlineTitle: "Registration Saved 💾",
                 offlineDetail: "You are currently offline. We've saved your data and will send it automatically when you're back online. See you!",
                 syncNotification: "Your pending registrations have been sent. Thank you!",
-                // CAMBIO: Se añaden placeholders en inglés
                 placeholderInvitedBy: "Who invited you?",
                 placeholderFullName: "Your full name",
                 placeholderPhone: "Ex: 123-456-7890",
+                placeholderAge: "18",
                 placeholderPhoneCheck: "The number you registered with"
             }
         };
 
+        // El resto del script es idéntico y no necesita cambios.
         let currentLang = 'es';
         const screens = { welcome: document.getElementById('welcomeScreen'), registration: document.getElementById('registrationForm'), attendance: document.getElementById('attendanceForm'), success: document.getElementById('successMessage'), error: document.getElementById('errorMessage') };
-        
-        function showScreen(screenName) {
-            Object.values(screens).forEach(screen => screen.classList.add('hidden'));
-            screens[screenName]?.classList.remove('hidden');
-        }
-
-        // CAMBIO: La función ahora también traduce los placeholders
-        function updateLanguage() {
-            const t = translations[currentLang];
-            
-            // Traduce textos normales
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (t[key]) el.textContent = t[key];
-            });
-
-            // Traduce los placeholders de los inputs
-            document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-translate-placeholder');
-                if (t[key]) el.placeholder = t[key];
-            });
-
-            document.documentElement.lang = currentLang;
-            document.getElementById('langToggle').textContent = currentLang === 'es' ? 'ES' : 'EN';
-        }
-
+        function showScreen(screenName) { Object.values(screens).forEach(screen => screen.classList.add('hidden')); screens[screenName]?.classList.remove('hidden'); }
+        function updateLanguage() { const t = translations[currentLang]; document.querySelectorAll('[data-translate]').forEach(el => { const key = el.getAttribute('data-translate'); if (t[key]) el.textContent = t[key]; }); document.querySelectorAll('[data-translate-placeholder]').forEach(el => { const key = el.getAttribute('data-translate-placeholder'); if (t[key]) el.placeholder = t[key]; }); document.documentElement.lang = currentLang; document.getElementById('langToggle').textContent = currentLang === 'es' ? 'ES' : 'EN'; }
         function showConfetti() { if (typeof confetti === 'function') confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } }); }
-
-        function showLoader(loaderId, show = true) {
-            const loader = document.getElementById(loaderId);
-            loader.style.display = show ? 'block' : 'none';
-            const button = loader.closest('form')?.querySelector('button[type="submit"]');
-            if (button) button.style.display = show ? 'none' : 'block';
-        }
-
-        function showSuccess(title, detail, showConfettiAnimation = true) {
-            document.getElementById('successTitle').textContent = title;
-            document.getElementById('successDetail').textContent = detail;
-            document.getElementById('successIcon').textContent = '🎉';
-            showScreen('success');
-            if (showConfettiAnimation) showConfetti();
-        }
-
-        function showError(detailKey) {
-            const t = translations[currentLang];
-            document.getElementById('errorDetail').textContent = t[detailKey];
-            showScreen('error');
-        }
-
-        async function submitData(formData, formElement) {
-            const loaderId = formElement.id === 'regForm' ? 'registerLoader' : 'attendanceLoader';
-            showLoader(loaderId, true);
-
-            if (!navigator.onLine) {
-                saveForLater(formData, formElement);
-                return;
-            }
-
-            try {
-                const response = await fetch(SCRIPT_URL, {
-                    method: 'POST', mode: 'cors', cache: 'no-cache',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(formData)
-                });
-                const result = await response.json();
-
-                if (result.success || result.name) {
-                    const t = translations[currentLang];
-                    let title, detail;
-                    
-                    const gender = result.gender || formData.genero;
-
-                    if (formData.action === 'register') {
-                        title = result.registered ? t.welcomeBackTitle : t.successTitle;
-                        detail = result.registered ? t.registrationWelcomeBack : t.registrationSuccess;
-                    } else {
-                        title = t.welcomeBackTitle;
-                        detail = t.attendanceSuccess;
-                    }
-
-                    detail = detail.replace('{name}', result.name);
-
-                    if (currentLang === 'es' && gender) {
-                        if (gender.toUpperCase() === 'M') {
-                            detail = detail.replace(/Bienvenido\/a|Bienvenida/g, 'Bienvenido');
-                        } else if (gender.toUpperCase() === 'F') {
-                            detail = detail.replace(/Bienvenido\/a|Bienvenido/g, 'Bienvenida');
-                        }
-                    }
-                    
-                    showSuccess(title, detail);
-
-                } else {
-                    showError('attendanceError');
-                }
-            } catch (error) {
-                console.error("Submit Error:", error);
-                showError('attendanceError');
-            } finally {
-                showLoader(loaderId, false);
-                formElement.reset();
-            }
-        }
-        
-        function saveForLater(formData, formElement) {
-            const queue = JSON.parse(localStorage.getItem('offlineQueue')) || [];
-            queue.push(formData);
-            localStorage.setItem('offlineQueue', JSON.stringify(queue));
-            
-            const loaderId = formElement.id === 'regForm' ? 'registerLoader' : 'attendanceLoader';
-            showLoader(loaderId, false);
-            formElement.reset();
-            
-            const t = translations[currentLang];
-            document.getElementById('successIcon').textContent = '💾';
-            showSuccess(t.offlineTitle, t.offlineDetail, false);
-        }
-
-        async function processOfflineQueue() {
-            const queue = JSON.parse(localStorage.getItem('offlineQueue')) || [];
-            if (navigator.onLine && queue.length > 0) {
-                console.log(`Processing ${queue.length} offline items...`);
-                
-                const submissions = queue.map(formData => 
-                    fetch(SCRIPT_URL, {
-                        method: 'POST', mode: 'cors', cache: 'no-cache',
-                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                        body: JSON.stringify(formData)
-                    }).catch(err => console.error('Failed to sync item:', err))
-                );
-
-                await Promise.all(submissions);
-                
-                localStorage.removeItem('offlineQueue');
-                console.log('Offline queue processed and cleared.');
-            }
-        }
-
-        document.getElementById('langToggle').addEventListener('click', () => {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            updateLanguage();
-        });
-
-        ['yesBtn', 'noBtn', 'backFromRegister', 'backFromAttendance', 'backToWelcome', 'backToWelcomeError'].forEach(id => {
-            document.getElementById(id).addEventListener('click', (e) => {
-                switch(id) {
-                    case 'yesBtn': showScreen('registration'); break;
-                    case 'noBtn': showScreen('attendance'); break;
-                    default: showScreen('welcome'); processOfflineQueue(); break;
-                }
-            });
-        });
-        
+        function showLoader(loaderId, show = true) { const loader = document.getElementById(loaderId); loader.style.display = show ? 'block' : 'none'; const button = loader.closest('.form-actions')?.querySelector('button'); if (button) button.style.display = show ? 'none' : 'block'; }
+        function showSuccess(title, detail, showConfettiAnimation = true) { document.getElementById('successTitle').textContent = title; document.getElementById('successDetail').textContent = detail; document.getElementById('successIcon').textContent = '🎉'; showScreen('success'); if (showConfettiAnimation) showConfetti(); }
+        function showError(detailKey) { const t = translations[currentLang]; document.getElementById('errorDetail').textContent = t[detailKey]; showScreen('error'); }
+        async function submitData(formData, formElement) { const loaderId = formElement.id === 'regForm' ? 'registerLoader' : 'attendanceLoader'; showLoader(loaderId, true); if (!navigator.onLine) { saveForLater(formData, formElement); return; } try { const response = await fetch(SCRIPT_URL, { method: 'POST', mode: 'cors', cache: 'no-cache', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(formData) }); const result = await response.json(); if (result.success || result.name) { const t = translations[currentLang]; let title, detail; const gender = result.gender || formData.genero; if (formData.action === 'register') { title = result.registered ? t.welcomeBackTitle : t.successTitle; detail = result.registered ? t.registrationWelcomeBack : t.registrationSuccess; } else { title = t.welcomeBackTitle; detail = t.attendanceSuccess; } detail = detail.replace('{name}', result.name); if (currentLang === 'es' && gender) { if (gender.toUpperCase() === 'M') { detail = detail.replace(/Bienvenido\/a|Bienvenida/g, 'Bienvenido'); } else if (gender.toUpperCase() === 'F') { detail = detail.replace(/Bienvenido\/a|Bienvenida/g, 'Bienvenida'); } } showSuccess(title, detail); } else { showError('attendanceError'); } } catch (error) { console.error("Submit Error:", error); showError('attendanceError'); } finally { showLoader(loaderId, false); formElement.reset(); } }
+        function saveForLater(formData, formElement) { const queue = JSON.parse(localStorage.getItem('offlineQueue')) || []; queue.push(formData); localStorage.setItem('offlineQueue', JSON.stringify(queue)); const loaderId = formElement.id === 'regForm' ? 'registerLoader' : 'attendanceLoader'; showLoader(loaderId, false); formElement.reset(); const t = translations[currentLang]; document.getElementById('successIcon').textContent = '💾'; showSuccess(t.offlineTitle, t.offlineDetail, false); }
+        async function processOfflineQueue() { const queue = JSON.parse(localStorage.getItem('offlineQueue')) || []; if (navigator.onLine && queue.length > 0) { console.log(`Processing ${queue.length} offline items...`); const submissions = queue.map(formData => fetch(SCRIPT_URL, { method: 'POST', mode: 'cors', cache: 'no-cache', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(formData) }).catch(err => console.error('Failed to sync item:', err))); await Promise.all(submissions); localStorage.removeItem('offlineQueue'); console.log('Offline queue processed and cleared.'); } }
+        document.getElementById('langToggle').addEventListener('click', () => { currentLang = currentLang === 'es' ? 'en' : 'es'; updateLanguage(); });
+        ['yesBtn', 'noBtn', 'backFromRegister', 'backFromAttendance', 'backToWelcome', 'backToWelcomeError'].forEach(id => { document.getElementById(id).addEventListener('click', (e) => { switch(id) { case 'yesBtn': showScreen('registration'); break; case 'noBtn': showScreen('attendance'); break; default: showScreen('welcome'); processOfflineQueue(); break; } }); });
         document.getElementById('naBtn').addEventListener('click', () => { document.getElementById('invitedBy').value = 'N/A'; });
-
-        document.getElementById('regForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            submitData({
-                action: 'register',
-                invitadoPor: document.getElementById('invitedBy').value,
-                nombreApellido: document.getElementById('fullName').value,
-                genero: document.getElementById('gender').value,
-                telefono: document.getElementById('phone').value,
-                edad: document.getElementById('birthDate').value
-            }, e.target);
-        });
-
-        document.getElementById('attForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            submitData({
-                action: 'attendance',
-                telefono: document.getElementById('phoneCheck').value
-            }, e.target);
-        });
-        
+        document.getElementById('regForm').addEventListener('submit', (e) => { e.preventDefault(); submitData({ action: 'register', invitadoPor: document.getElementById('invitedBy').value, nombreApellido: document.getElementById('fullName').value, genero: document.getElementById('gender').value, telefono: document.getElementById('phone').value, fechaNacimiento: document.getElementById('birthDate').value, edad: document.getElementById('age').value }, e.target); });
+        document.getElementById('attForm').addEventListener('submit', (e) => { e.preventDefault(); submitData({ action: 'attendance', telefono: document.getElementById('phoneCheck').value }, e.target); });
         window.addEventListener('online', processOfflineQueue);
-        
         updateLanguage();
         showScreen('welcome');
         processOfflineQueue();
-
     </script>
 </body>
 </html>
