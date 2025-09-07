@@ -634,24 +634,57 @@
         confirmation: document.getElementById('confirmationScreen')
     };
 
+    // CAMBIO: Se añade la propiedad "format" a cada país
     const countryCodes = [
-        { name: "Panamá", code: "507", flag: "🇵🇦" }, { name: "USA", code: "1", flag: "🇺🇸" }, { name: "México", code: "52", flag: "🇲🇽" },
-        { name: "Colombia", code: "57", flag: "🇨🇴" }, { name: "España", code: "34", flag: "🇪🇸" }, { name: "Argentina", code: "54", flag: "🇦🇷" },
-        { name: "Perú", code: "51", flag: "🇵🇪" }, { name: "Venezuela", code: "58", flag: "🇻🇪" }, { name: "Chile", code: "56", flag: "🇨🇱" },
-        { name: "Ecuador", code: "593", flag: "🇪🇨" }, { name: "Guatemala", code: "502", flag: "🇬🇹" }, { name: "Cuba", code: "53", flag: "🇨🇺" },
-        { name: "Bolivia", code: "591", flag: "🇧🇴" }, { name: "Honduras", code: "504", flag: "🇭🇳" }, { name: "Paraguay", code: "595", flag: "🇵🇾" },
-        { name: "El Salvador", code: "503", flag: "🇸🇻" }, { name: "Nicaragua", code: "505", flag: "🇳🇮" }, { name: "Costa Rica", code: "506", flag: "🇨🇷" },
-        { name: "Puerto Rico", code: "1939", flag: "🇵🇷" }, { name: "Uruguay", code: "598", flag: "🇺🇾" }, { name: "Canadá", code: "1", flag: "🇨🇦" },
-        { name: "Brasil", code: "55", flag: "🇧🇷" }, { name: "Reino Unido", code: "44", flag: "🇬🇧" }, { name: "Francia", code: "33", flag: "🇫🇷" },
-        { name: "Alemania", code: "49", flag: "🇩🇪" }, { name: "Italia", code: "39", flag: "🇮🇹" }, { name: "Portugal", code: "351", flag: "🇵🇹" },
-        { name: "Japón", code: "81", flag: "🇯🇵" }, { name: "China", code: "86", flag: "🇨🇳" }, { name: "India", code: "91", flag: "🇮🇳" },
-        { name: "Australia", code: "61", flag: "🇦🇺" }, { name: "Rusia", code: "7", flag: "🇷🇺" }, { name: "Corea del Sur", code: "82", flag: "🇰🇷" },
-        { name: "Suiza", code: "41", flag: "🇨🇭" }, { name: "Suecia", code: "46", flag: "🇸🇪" }, { name: "Noruega", code: "47", flag: "🇳🇴" },
-        { name: "Países Bajos", code: "31", flag: "🇳🇱" }, { name: "Bélgica", code: "32", flag: "🇧🇪" }, { name: "Irlanda", code: "353", flag: "🇮🇪" },
-        { name: "Dinamarca", code: "45", flag: "🇩🇰" }, { name: "Finlandia", code: "358", flag: "🇫🇮" }, { name: "Austria", code: "43", flag: "🇦🇹" },
-        { name: "Nueva Zelanda", code: "64", flag: "🇳🇿" }, { name: "Sudáfrica", code: "27", flag: "🇿🇦" }, { name: "Egipto", code: "20", flag: "🇪🇬" },
-        { name: "Turquía", code: "90", flag: "🇹🇷" }, { name: "Israel", code: "972", flag: "🇮🇱" }, { name: "Singapur", code: "65", flag: "🇸🇬" },
-        { name: "Rep. Dominicana", code: "1809", flag: "🇩🇴" }
+        { name: "Panamá", code: "507", flag: "🇵🇦", format: [4, 4] },
+        { name: "USA", code: "1", flag: "🇺🇸", format: [3, 3, 4] },
+        { name: "México", code: "52", flag: "🇲🇽", format: [2, 4, 4] },
+        { name: "Colombia", code: "57", flag: "🇨🇴", format: [3, 3, 4] },
+        { name: "España", code: "34", flag: "🇪🇸", format: [3, 3, 3] },
+        { name: "Argentina", code: "54", flag: "🇦🇷", format: [2, 4, 4] },
+        { name: "Perú", code: "51", flag: "🇵🇪", format: [3, 3, 3] },
+        { name: "Venezuela", code: "58", flag: "🇻🇪", format: [3, 7] },
+        { name: "Chile", code: "56", flag: "🇨🇱", format: [1, 4, 4] },
+        { name: "Ecuador", code: "593", flag: "🇪🇨", format: [1, 3, 4] },
+        { name: "Guatemala", code: "502", flag: "🇬🇹", format: [4, 4] },
+        { name: "Cuba", code: "53", flag: "🇨🇺", format: [1, 3, 4] },
+        { name: "Bolivia", code: "591", flag: "🇧🇴", format: [1, 7] },
+        { name: "Honduras", code: "504", flag: "🇭🇳", format: [4, 4] },
+        { name: "Paraguay", code: "595", flag: "🇵🇾", format: [3, 6] },
+        { name: "El Salvador", code: "503", flag: "🇸🇻", format: [4, 4] },
+        { name: "Nicaragua", code: "505", flag: "🇳🇮", format: [4, 4] },
+        { name: "Costa Rica", code: "506", flag: "🇨🇷", format: [4, 4] },
+        { name: "Puerto Rico", code: "1939", flag: "🇵🇷", format: [3, 3, 4] },
+        { name: "Uruguay", code: "598", flag: "🇺🇾", format: [2, 3, 3] },
+        { name: "Canadá", code: "1", flag: "🇨🇦", format: [3, 3, 4] },
+        { name: "Brasil", code: "55", flag: "🇧🇷", format: [2, 5, 4] },
+        { name: "Reino Unido", code: "44", flag: "🇬🇧", format: [4, 6] },
+        { name: "Francia", code: "33", flag: "🇫🇷", format: [1, 2, 2, 2, 2] },
+        { name: "Alemania", code: "49", flag: "🇩🇪", format: [3, 7] },
+        { name: "Italia", code: "39", flag: "🇮🇹", format: [3, 7] },
+        { name: "Portugal", code: "351", flag: "🇵🇹", format: [3, 3, 3] },
+        { name: "Japón", code: "81", flag: "🇯🇵", format: [2, 4, 4] },
+        { name: "China", code: "86", flag: "🇨🇳", format: [3, 4, 4] },
+        { name: "India", code: "91", flag: "🇮🇳", format: [5, 5] },
+        { name: "Australia", code: "61", flag: "🇦🇺", format: [1, 4, 4] },
+        { name: "Rusia", code: "7", flag: "🇷🇺", format: [3, 3, 2, 2] },
+        { name: "Corea del Sur", code: "82", flag: "🇰🇷", format: [2, 4, 4] },
+        { name: "Suiza", code: "41", flag: "🇨🇭", format: [2, 3, 2, 2] },
+        { name: "Suecia", code: "46", flag: "🇸🇪", format: [2, 3, 2, 2] },
+        { name: "Noruega", code: "47", flag: "🇳🇴", format: [3, 2, 3] },
+        { name: "Países Bajos", code: "31", flag: "🇳🇱", format: [1, 8] },
+        { name: "Bélgica", code: "32", flag: "🇧🇪", format: [3, 2, 2, 2] },
+        { name: "Irlanda", code: "353", flag: "🇮🇪", format: [2, 7] },
+        { name: "Dinamarca", code: "45", flag: "🇩🇰", format: [2, 2, 2, 2] },
+        { name: "Finlandia", code: "358", flag: "🇫🇮", format: [2, 7] },
+        { name: "Austria", code: "43", flag: "🇦🇹", format: [3, 7] },
+        { name: "Nueva Zelanda", code: "64", flag: "🇳🇿", format: [3, 3, 4] },
+        { name: "Sudáfrica", code: "27", flag: "🇿🇦", format: [2, 3, 4] },
+        { name: "Egipto", code: "20", flag: "🇪🇬", format: [3, 4, 4] },
+        { name: "Turquía", code: "90", flag: "🇹🇷", format: [3, 3, 4] },
+        { name: "Israel", code: "972", flag: "🇮🇱", format: [2, 3, 4] },
+        { name: "Singapur", code: "65", flag: "🇸🇬", format: [4, 4] },
+        { name: "Rep. Dominicana", code: "1809", flag: "🇩🇴", format: [3, 3, 4] }
     ];
     
     function populateCountryCodes(selectId) {
@@ -727,6 +760,38 @@
         if(currentDay) daySelect.value = currentDay;
     }
 
+    // CAMBIO: Función genérica para formatear números de teléfono
+    function formatPhoneNumber(input, countryCode) {
+        if (input.value.toUpperCase() === 'N/A') return;
+
+        const country = countryCodes.find(c => c.code === countryCode);
+        if (!country || !country.format) { // Si el país no tiene formato, solo limpiar
+            input.value = input.value.replace(/[^\d]/g, '');
+            return;
+        }
+
+        const format = country.format;
+        const maxLength = format.reduce((a, b) => a + b, 0);
+        
+        let digits = input.value.replace(/\D/g, '');
+        if (digits.length > maxLength) {
+            digits = digits.slice(0, maxLength);
+        }
+
+        const parts = [];
+        let start = 0;
+        for (const len of format) {
+            const part = digits.slice(start, start + len);
+            if (part.length > 0) {
+                parts.push(part);
+                start += len;
+            } else {
+                break;
+            }
+        }
+        input.value = parts.join('-');
+    }
+
     document.getElementById('birthMonth').addEventListener('change', populateDateSelects);
     document.getElementById('birthYear').addEventListener('change', populateDateSelects);
 
@@ -750,27 +815,19 @@
     document.getElementById('naBtnInvitedBy').addEventListener('click', () => { document.getElementById('invitedBy').value = 'N/A'; });
     document.getElementById('naBtnPhone').addEventListener('click', () => { document.getElementById('phone').value = 'N/A'; });
 
+    // CAMBIO: Event listeners refactorizados para usar la nueva función de formato
     document.getElementById('phone').addEventListener('input', (e) => {
-        const countryCode = document.getElementById('countryCode').value;
-        const input = e.target;
-        if (input.value.toUpperCase() === 'N/A') return;
-        let value = input.value.replace(/\D/g, ''); 
-        if (countryCode === '507') {
-            if (value.length > 8) value = value.slice(0, 8);
-            if (value.length > 4) value = `${value.slice(0, 4)}-${value.slice(4)}`;
-        }
-        input.value = value;
+        formatPhoneNumber(e.target, document.getElementById('countryCode').value);
     });
-
+    document.getElementById('countryCode').addEventListener('change', () => {
+        formatPhoneNumber(document.getElementById('phone'), document.getElementById('countryCode').value);
+    });
+    
     document.getElementById('phoneCheck').addEventListener('input', (e) => {
-        const countryCode = document.getElementById('countryCodeCheck').value;
-        const input = e.target;
-        let value = input.value.replace(/\D/g, ''); 
-        if (countryCode === '507') {
-            if (value.length > 8) value = value.slice(0, 8);
-            if (value.length > 4) value = `${value.slice(0, 4)}-${value.slice(4)}`;
-        }
-        input.value = value;
+        formatPhoneNumber(e.target, document.getElementById('countryCodeCheck').value);
+    });
+    document.getElementById('countryCodeCheck').addEventListener('change', () => {
+        formatPhoneNumber(document.getElementById('phoneCheck'), document.getElementById('countryCodeCheck').value);
     });
 
     document.getElementById('regForm').addEventListener('submit', (e) => {
