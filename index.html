@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <!-- Esta etiqueta META es la clave para la compatibilidad con todos los móviles (iOS y Android). -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INVICTUS JUVENIL</title>
     <!-- Script para el efecto de confeti -->
@@ -442,7 +443,7 @@
             <label for="phone" data-translate="labelPhone">📱 Teléfono</label>
             <div class="phone-group">
                 <select id="countryCode" required></select>
-                <input type="text" id="phone" required data-translate-placeholder="placeholderPhone">
+                <input type="tel" id="phone" required data-translate-placeholder="placeholderPhone">
             </div>
             <button type="button" class="na-btn" id="naBtnPhone" data-translate="naBtn">No aplica</button>
         </div>
@@ -460,7 +461,6 @@
         </div>
         <div class="form-actions">
             <button type="submit" class="btn-primary" id="registerBtn" data-translate="registerBtnText">🚀 ¡Registrarme!</button>
-            <!-- CAMBIO: Nuevo Loader -->
             <div class="loader" id="registerLoader">
                 <svg viewBox="0 0 240 240" height="240" width="240" class="loader-svg">
                     <circle stroke-linecap="round" stroke-dashoffset="-330" stroke-dasharray="0 660" stroke-width="20" stroke="#000" fill="none" r="105" cy="120" cx="120" class="loader-ring loader-ring-a"></circle>
@@ -506,7 +506,6 @@
         </div>
         <div class="form-actions">
             <button type="submit" class="btn-secondary" id="checkBtn" data-translate="checkBtnText">🔍 Verificar Asistencia</button>
-             <!-- CAMBIO: Nuevo Loader -->
             <div class="loader" id="attendanceLoader">
                 <svg viewBox="0 0 240 240" height="240" width="240" class="loader-svg">
                     <circle stroke-linecap="round" stroke-dashoffset="-330" stroke-dasharray="0 660" stroke-width="20" stroke="#000" fill="none" r="105" cy="120" cx="120" class="loader-ring loader-ring-a"></circle>
@@ -658,10 +657,294 @@
             confirmYes: "Yes, register",
             confirmNo: "No, go back",
             dateSelects: { day: "Day", month: "Month", year: "Year" }
+        },
+        zh: { // Chino
+            welcomeTitle: "这是您第一次参加 INVICTUS 青年活动吗？ 🤔",
+            yesBtnText: "😀 是的，我是第一次来",
+            noBtnText: "😎 不，我以前来过",
+            regSubtitle: "欢迎来到 INVICTUS 大家庭！ 🤗",
+            labelInvitedBy: "👥 邀请人",
+            naBtn: "不适用",
+            labelFullName: "🏷️ 姓名:",
+            labelGender: "♀️♂️ 性别:",
+            genderDefault: "选择...",
+            genderM: "👨 男性",
+            genderF: "👩 女性",
+            labelPhone: "📱 电话:",
+            labelBirthDate: "🎂 出生日期:",
+            labelAge: "🔢 年龄:",
+            registerBtnText: "🚀 注册!",
+            registerLoaderText: "正在处理信息...",
+            attSubtitle: "很高兴再次见到你！ 😊",
+            labelFullNameCheck: "🏷️ 姓名:",
+            labelPhoneCheck: "📱 您的电话号码（可选）",
+            checkBtnText: "🔍 签到",
+            attendanceLoaderText: "正在处理信息...",
+            successTitle: "太棒了!",
+            welcomeBackTitle: "很高兴见到你!",
+            errorTitle: "哎呀!",
+            ageMismatchError: "年龄与出生日期不符。请检查您的数据。",
+            backToWelcomeText: "🏠 返回首页",
+            backToWelcomeErrorText: "🏠 返回首页",
+            registrationSuccess: "欢迎加入大家庭，{name}！上帝为您制定了伟大的计划 ✨",
+            registrationWelcomeBack: "很高兴再次见到你，{name}！您的出席已记录。",
+            attendanceSuccess: "上帝爱你，{name}！我们很高兴再次见到你 🤗",
+            attendanceError: "我们找不到匹配项。请检查您的数据，或者如果您是第一次来，请注册。",
+            offlineTitle: "注册已保存 💾",
+            offlineDetail: "您当前处于离线状态。我们已保存您的数据，并会在您重新上线后自动发送。再见！",
+            syncNotification: "您待处理的注册已发送。谢谢！",
+            placeholderInvitedBy: "谁邀请了你？",
+            placeholderFullName: "您的全名",
+            placeholderPhone: "0000-0000",
+            placeholderAge: "18",
+            placeholderFullNameCheck: "您注册时使用的名字",
+            placeholderPhoneCheck: "可选，为了更精确的匹配",
+            confirmTitle: "验证您的信息",
+            confirmSubtitle: "这些数据正确吗？",
+            confirmYes: "是的，注册",
+            confirmNo: "不，返回修改",
+            dateSelects: { day: "日", month: "月", year: "年" }
+        },
+        pt: { // Portugués
+            welcomeTitle: "É a sua Primeira Vez no INVICTUS JUVENIL? 🤔",
+            yesBtnText: "😀 Sim, é a minha primeira vez",
+            noBtnText: "😎 Não, já vim antes",
+            regSubtitle: "Bem-vindo à família INVICTUS! 🤗",
+            labelInvitedBy: "👥 Convidado Por",
+            naBtn: "N/A",
+            labelFullName: "🏷️ Nome Completo:",
+            labelGender: "♀️♂️ Género:",
+            genderDefault: "Selecione...",
+            genderM: "👨 Masculino",
+            genderF: "👩 Feminino",
+            labelPhone: "📱 Telefone:",
+            labelBirthDate: "🎂 Data de Nascimento:",
+            labelAge: "🔢 Idade:",
+            registerBtnText: "🚀 Registrar-me!",
+            registerLoaderText: "Processando a Informação...",
+            attSubtitle: "Que bom te ver de novo! 😊",
+            labelFullNameCheck: "🏷️ Nome Completo:",
+            labelPhoneCheck: "📱 Seu Número de Telefone (Opcional)",
+            checkBtnText: "🔍 Verificar Presença",
+            attendanceLoaderText: "Processando a Informação...",
+            successTitle: "Excelente!",
+            welcomeBackTitle: "Que bom te ver!",
+            errorTitle: "Oops!",
+            ageMismatchError: "A idade não corresponde à data de nascimento. Por favor, verifique os dados.",
+            backToWelcomeText: "🏠 Voltar ao Início",
+            backToWelcomeErrorText: "🏠 Voltar ao Início",
+            registrationSuccess: "Bem-vindo(a) à família, {name}! Deus tem grandes planos para você ✨",
+            registrationWelcomeBack: "Que alegria te ver de novo, {name}! Sua presença foi marcada.",
+            attendanceSuccess: "Deus te ama, {name}! Estamos felizes em te ver de novo 🤗",
+            attendanceError: "Não conseguimos encontrar uma correspondência. Por favor, verifique seus dados ou registre-se se for sua primeira vez.",
+            offlineTitle: "Registro Salvo 💾",
+            offlineDetail: "Você está sem conexão com a internet. Salvamos seus dados e os enviaremos automaticamente quando você se conectar. Até logo!",
+            syncNotification: "Seus registros pendentes foram enviados. Obrigado!",
+            placeholderInvitedBy: "Quem te convidou?",
+            placeholderFullName: "Seu nome completo",
+            placeholderPhone: "0000-0000",
+            placeholderAge: "18",
+            placeholderFullNameCheck: "O nome com o qual você se registrou",
+            placeholderPhoneCheck: "Opcional, para maior precisão",
+            confirmTitle: "Verifique suas Informações",
+            confirmSubtitle: "Estes dados estão corretos?",
+            confirmYes: "Sim, registrar",
+            confirmNo: "Não, corrigir",
+            dateSelects: { day: "Dia", month: "Mês", year: "Ano" }
+        },
+        ja: { // Japonés
+            welcomeTitle: "INVICTUS YOUTHへようこそ！初めてですか？ 🤔",
+            yesBtnText: "😀 はい、初めてです",
+            noBtnText: "😎 いいえ、来たことがあります",
+            regSubtitle: "INVICTUSファミリーへようこそ！ 🤗",
+            labelInvitedBy: "👥 紹介者",
+            naBtn: "該当なし",
+            labelFullName: "🏷️ 氏名:",
+            labelGender: "♀️♂️ 性別:",
+            genderDefault: "選択...",
+            genderM: "👨 男性",
+            genderF: "👩 女性",
+            labelPhone: "📱 電話番号:",
+            labelBirthDate: "🎂 生年月日:",
+            labelAge: "🔢 年齢:",
+            registerBtnText: "🚀 登録する！",
+            registerLoaderText: "情報を処理中...",
+            attSubtitle: "またお会いできて嬉しいです！ 😊",
+            labelFullNameCheck: "🏷️ 氏名:",
+            labelPhoneCheck: "📱 電話番号（任意）",
+            checkBtnText: "🔍 出席を確認",
+            attendanceLoaderText: "情報を処理中...",
+            successTitle: "素晴らしい！",
+            welcomeBackTitle: "お会いできて嬉しいです！",
+            errorTitle: "おっと！",
+            ageMismatchError: "年齢が誕生日と一致しません。データを確認してください。",
+            backToWelcomeText: "🏠 最初に戻る",
+            backToWelcomeErrorText: "🏠 最初に戻る",
+            registrationSuccess: "ようこそ、{name}さん！神はあなたのために素晴らしい計画を用意しています ✨",
+            registrationWelcomeBack: "またお会いできて嬉しいです、{name}さん！出席が記録されました。",
+            attendanceSuccess: "神はあなたを愛しています、{name}さん！またお会いできて嬉しいです 🤗",
+            attendanceError: "一致するものが見つかりませんでした。データを確認するか、初めての場合は登録してください。",
+            offlineTitle: "登録が保存されました 💾",
+            offlineDetail: "現在オフラインです。データを保存しました。オンラインに戻り次第、自動的に送信されます。ではまた！",
+            syncNotification: "保留中の登録が送信されました。ありがとうございます！",
+            placeholderInvitedBy: "誰に招待されましたか？",
+            placeholderFullName: "あなたのフルネーム",
+            placeholderPhone: "0000-0000",
+            placeholderAge: "18",
+            placeholderFullNameCheck: "登録した名前",
+            placeholderPhoneCheck: "任意、より正確な照合のため",
+            confirmTitle: "情報を確認してください",
+            confirmSubtitle: "このデータは正しいですか？",
+            confirmYes: "はい、登録します",
+            confirmNo: "いいえ、修正します",
+            dateSelects: { day: "日", month: "月", year: "年" }
+        },
+        ko: { // Coreano
+            welcomeTitle: "INVICTUS 청소년부에 처음 오셨나요? 🤔",
+            yesBtnText: "😀 네, 처음이에요",
+            noBtnText: "😎 아니요, 와본 적 있어요",
+            regSubtitle: "INVICTUS 가족이 된 것을 환영합니다! 🤗",
+            labelInvitedBy: "👥 초대한 사람",
+            naBtn: "해당 없음",
+            labelFullName: "🏷️ 이름:",
+            labelGender: "♀️♂️ 성별:",
+            genderDefault: "선택...",
+            genderM: "👨 남성",
+            genderF: "👩 여성",
+            labelPhone: "📱 전화번호:",
+            labelBirthDate: "🎂 생년월일:",
+            labelAge: "🔢 나이:",
+            registerBtnText: "🚀 등록하기!",
+            registerLoaderText: "정보 처리 중...",
+            attSubtitle: "다시 만나서 반가워요! 😊",
+            labelFullNameCheck: "🏷️ 이름:",
+            labelPhoneCheck: "📱 전화번호 (선택 사항)",
+            checkBtnText: "🔍 출석 확인",
+            attendanceLoaderText: "정보 처리 중...",
+            successTitle: "좋아요!",
+            welcomeBackTitle: "만나서 반가워요!",
+            errorTitle: "죄송합니다!",
+            ageMismatchError: "나이가 생년월일과 일치하지 않습니다. 데이터를 확인해주세요.",
+            backToWelcomeText: "🏠 처음으로 돌아가기",
+            backToWelcomeErrorText: "🏠 처음으로 돌아가기",
+            registrationSuccess: "가족이 된 것을 환영합니다, {name}님! 하나님은 당신을 위한 위대한 계획을 가지고 계십니다 ✨",
+            registrationWelcomeBack: "다시 만나서 정말 기뻐요, {name}님! 출석이 기록되었습니다.",
+            attendanceSuccess: "하나님은 당신을 사랑하십니다, {name}님! 다시 만나서 기뻐요 🤗",
+            attendanceError: "일치하는 정보를 찾을 수 없습니다. 데이터를 확인하거나 처음 오셨다면 등록해주세요.",
+            offlineTitle: "등록 정보 저장됨 💾",
+            offlineDetail: "현재 오프라인 상태입니다. 데이터를 저장했으며, 온라인 상태가 되면 자동으로 전송됩니다. 다음에 봬요!",
+            syncNotification: "보류 중인 등록 정보가 전송되었습니다. 감사합니다!",
+            placeholderInvitedBy: "누가 당신을 초대했나요?",
+            placeholderFullName: "당신의 전체 이름",
+            placeholderPhone: "0000-0000",
+            placeholderAge: "18",
+            placeholderFullNameCheck: "등록한 이름",
+            placeholderPhoneCheck: "선택 사항, 더 정확한 일치를 위해",
+            confirmTitle: "정보를 확인하세요",
+            confirmSubtitle: "이 정보가 맞습니까?",
+            confirmYes: "네, 등록합니다",
+            confirmNo: "아니요, 수정합니다",
+            dateSelects: { day: "일", month: "월", year: "년" }
+        },
+        de: { // Alemán
+            welcomeTitle: "Bist du zum ersten Mal bei INVICTUS JUGEND? 🤔",
+            yesBtnText: "😀 Ja, ich bin zum ersten Mal hier",
+            noBtnText: "😎 Nein, ich war schon einmal hier",
+            regSubtitle: "Willkommen in der INVICTUS-Familie! 🤗",
+            labelInvitedBy: "👥 Eingeladen von",
+            naBtn: "N/A",
+            labelFullName: "🏷️ Vollständiger Name:",
+            labelGender: "♀️♂️ Geschlecht:",
+            genderDefault: "Wählen...",
+            genderM: "👨 Männlich",
+            genderF: "👩 Weiblich",
+            labelPhone: "📱 Telefon:",
+            labelBirthDate: "🎂 Geburtsdatum:",
+            labelAge: "🔢 Alter:",
+            registerBtnText: "🚀 Registrieren!",
+            registerLoaderText: "Informationen werden verarbeitet...",
+            attSubtitle: "Schön, dich wiederzusehen! 😊",
+            labelFullNameCheck: "🏷️ Vollständiger Name:",
+            labelPhoneCheck: "📱 Deine Telefonnummer (Optional)",
+            checkBtnText: "🔍 Anwesenheit prüfen",
+            attendanceLoaderText: "Informationen werden verarbeitet...",
+            successTitle: "Ausgezeichnet!",
+            welcomeBackTitle: "Schön, dich zu sehen!",
+            errorTitle: "Hoppla!",
+            ageMismatchError: "Das Alter stimmt nicht mit dem Geburtsdatum überein. Bitte überprüfe deine Daten.",
+            backToWelcomeText: "🏠 Zurück zum Start",
+            backToWelcomeErrorText: "🏠 Zurück zum Start",
+            registrationSuccess: "Willkommen in der Familie, {name}! Gott hat große Pläne für dich ✨",
+            registrationWelcomeBack: "So schön, dich wiederzusehen, {name}! Deine Anwesenheit wurde vermerkt.",
+            attendanceSuccess: "Gott liebt dich, {name}! Wir freuen uns, dich wiederzusehen 🤗",
+            attendanceError: "Wir konnten keine Übereinstimmung finden. Bitte überprüfe deine Daten oder registriere dich, wenn du zum ersten Mal hier bist.",
+            offlineTitle: "Registrierung Gespeichert 💾",
+            offlineDetail: "Du bist derzeit offline. Wir haben deine Daten gespeichert und senden sie automatisch, wenn du wieder online bist. Bis bald!",
+            syncNotification: "Deine ausstehenden Registrierungen wurden gesendet. Danke!",
+            placeholderInvitedBy: "Wer hat dich eingeladen?",
+            placeholderFullName: "Dein vollständiger Name",
+            placeholderPhone: "0000-0000",
+            placeholderAge: "18",
+            placeholderFullNameCheck: "Der Name, mit dem du dich registriert hast",
+            placeholderPhoneCheck: "Optional, für eine genaue Übereinstimmung",
+            confirmTitle: "Überprüfe deine Informationen",
+            confirmSubtitle: "Sind diese Daten korrekt?",
+            confirmYes: "Ja, registrieren",
+            confirmNo: "Nein, korrigieren",
+            dateSelects: { day: "Tag", month: "Monat", year: "Jahr" }
+        },
+        ru: { // Ruso
+            welcomeTitle: "Вы впервые в INVICTUS YOUTH? 🤔",
+            yesBtnText: "😀 Да, я здесь впервые",
+            noBtnText: "😎 Нет, я уже был здесь",
+            regSubtitle: "Добро пожаловать в семью INVICTUS! 🤗",
+            labelInvitedBy: "👥 Приглашен(а) кем",
+            naBtn: "Н/Д",
+            labelFullName: "🏷️ Имя и Фамилия:",
+            labelGender: "♀️♂️ Пол:",
+            genderDefault: "Выберите...",
+            genderM: "👨 Мужской",
+            genderF: "👩 Женский",
+            labelPhone: "📱 Телефон:",
+            labelBirthDate: "🎂 Дата рождения:",
+            labelAge: "🔢 Возраст:",
+            registerBtnText: "🚀 Зарегистрироваться!",
+            registerLoaderText: "Обработка информации...",
+            attSubtitle: "Рады видеть вас снова! 😊",
+            labelFullNameCheck: "🏷️ Имя и Фамилия:",
+            labelPhoneCheck: "📱 Ваш номер телефона (необязательно)",
+            checkBtnText: "🔍 Отметить посещение",
+            attendanceLoaderText: "Обработка информации...",
+            successTitle: "Отлично!",
+            welcomeBackTitle: "Рады вас видеть!",
+            errorTitle: "Ой!",
+            ageMismatchError: "Возраст не соответствует дате рождения. Пожалуйста, проверьте данные.",
+            backToWelcomeText: "🏠 Вернуться в начало",
+            backToWelcomeErrorText: "🏠 Вернуться в начало",
+            registrationSuccess: "Добро пожаловать в семью, {name}! У Бога на вас большие планы ✨",
+            registrationWelcomeBack: "Так рады видеть вас снова, {name}! Ваше посещение отмечено.",
+            attendanceSuccess: "Бог любит вас, {name}! Мы рады видеть вас снова 🤗",
+            attendanceError: "Не удалось найти совпадение. Пожалуйста, проверьте свои данные или зарегистрируйтесь, если вы здесь впервые.",
+            offlineTitle: "Регистрация сохранена 💾",
+            offlineDetail: "Вы не в сети. Мы сохранили ваши данные и отправим их автоматически, когда вы подключитесь. До встречи!",
+            syncNotification: "Ваши ожидающие регистрации были отправлены. Спасибо!",
+            placeholderInvitedBy: "Кто вас пригласил?",
+            placeholderFullName: "Ваше полное имя",
+            placeholderPhone: "0000-0000",
+            placeholderAge: "18",
+            placeholderFullNameCheck: "Имя, с которым вы зарегистрировались",
+            placeholderPhoneCheck: "Необязательно, для более точного совпадения",
+            confirmTitle: "Проверьте вашу информацию",
+            confirmSubtitle: "Эти данные верны?",
+            confirmYes: "Да, зарегистрировать",
+            confirmNo: "Нет, исправить",
+            dateSelects: { day: "День", month: "Месяц", year: "Год" }
         }
     };
-
-    let currentLang = 'es';
+    
+    const supportedLangs = ['es', 'en', 'zh', 'pt', 'ja', 'ko', 'de', 'ru'];
+    let currentLangIndex = 0;
+    let currentLang = supportedLangs[currentLangIndex];
     let pendingRegistrationData = null; 
     const screens = {
         welcome: document.getElementById('welcomeScreen'),
@@ -740,6 +1023,7 @@
     function showScreen(screenName) { Object.values(screens).forEach(screen => screen.classList.add('hidden')); screens[screenName]?.classList.remove('hidden'); }
     
     function updateLanguage() { 
+        currentLang = supportedLangs[currentLangIndex];
         const t = translations[currentLang]; 
         document.querySelectorAll('[data-translate]').forEach(el => { const key = el.getAttribute('data-translate'); if (t[key]) el.textContent = t[key]; }); 
         document.querySelectorAll('[data-translate-placeholder]').forEach(el => { const key = el.getAttribute('data-translate-placeholder'); if (t[key]) el.placeholder = t[key]; }); 
@@ -776,9 +1060,17 @@
         }
 
         monthSelect.innerHTML = `<option value="">${t.month}</option>`;
-        const monthNames = (currentLang === 'es')
-            ? ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-            : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const monthNames = {
+            es: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            zh: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            pt: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+            ja: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+            ko: ["1월", "2월", "3월", "4月", "5月", "6月", "7月", "8월", "9월", "10월", "11월", "12월"],
+            de: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+            ru: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+        }[currentLang];
+
         monthNames.forEach((month, index) => {
             monthSelect.innerHTML += `<option value="${index + 1}">${month}</option>`;
         });
@@ -833,7 +1125,7 @@
 
     document.body.addEventListener('click', (e) => {
         if (e.target.closest('#langToggle')) {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
+            currentLangIndex = (currentLangIndex + 1) % supportedLangs.length;
             updateLanguage();
         }
     });
