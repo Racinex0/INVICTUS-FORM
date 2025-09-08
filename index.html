@@ -145,21 +145,12 @@
         }
         .loader {
             display: none;
-            text-align: center;
+            flex-direction: column; /* Alinea el SVG y el texto verticalmente */
             align-items: center;
             justify-content: center;
             gap: 1rem;
             color: var(--text-color);
         }
-        .spinner {
-            border: 4px solid rgba(0,0,0,0.1);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border-left-color: var(--primary-color);
-            animation: spin 1s ease infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
         .na-btn {
             display: block;
@@ -351,6 +342,35 @@
         @keyframes circle-10 { 33% { transform: translate(68px, 20px) translateZ(0); } 66% { transform: translate(100px, 28px) translateZ(0); } }
         @keyframes circle-11 { 33% { transform: translate(4px, 4px) translateZ(0); } 66% { transform: translate(68px, 20px) translateZ(0); } }
         @keyframes circle-12 { 33% { transform: translate(56px, 0px) translateZ(0); } 66% { transform: translate(60px, -32px) translateZ(0); } }
+
+        /* --- INICIO ESTILOS NUEVO LOADER --- */
+        .loader-svg { /* Renombrado para evitar conflictos */
+            width: 6em;
+            height: 6em;
+        }
+        .loader-ring {
+            animation: ringA 2s linear infinite;
+        }
+        .loader-ring-a {
+            stroke: #9708F4;
+        }
+        .loader-ring-b {
+            animation-name: ringB;
+            stroke: #5E14E4;
+        }
+        .loader-ring-c {
+            animation-name: ringC;
+            stroke: #9708F4;
+        }
+        .loader-ring-d {
+            animation-name: ringD;
+            stroke: #5E14E4;
+        }
+        @keyframes ringA { from, 4% { stroke-dasharray: 0 660; stroke-width: 20; stroke-dashoffset: -330; } 12% { stroke-dasharray: 60 600; stroke-width: 30; stroke-dashoffset: -335; } 32% { stroke-dasharray: 60 600; stroke-width: 30; stroke-dashoffset: -595; } 40%, 54% { stroke-dasharray: 0 660; stroke-width: 20; stroke-dashoffset: -660; } 62% { stroke-dasharray: 60 600; stroke-width: 30; stroke-dashoffset: -665; } 82% { stroke-dasharray: 60 600; stroke-width: 30; stroke-dashoffset: -925; } 90%, to { stroke-dasharray: 0 660; stroke-width: 20; stroke-dashoffset: -990; } }
+        @keyframes ringB { from, 12% { stroke-dasharray: 0 220; stroke-width: 20; stroke-dashoffset: -110; } 20% { stroke-dasharray: 20 200; stroke-width: 30; stroke-dashoffset: -115; } 40% { stroke-dasharray: 20 200; stroke-width: 30; stroke-dashoffset: -195; } 48%, 62% { stroke-dasharray: 0 220; stroke-width: 20; stroke-dashoffset: -220; } 70% { stroke-dasharray: 20 200; stroke-width: 30; stroke-dashoffset: -225; } 90% { stroke-dasharray: 20 200; stroke-width: 30; stroke-dashoffset: -305; } 98%, to { stroke-dasharray: 0 220; stroke-width: 20; stroke-dashoffset: -330; } }
+        @keyframes ringC { from { stroke-dasharray: 0 440; stroke-width: 20; stroke-dashoffset: 0; } 8% { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -5; } 28% { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -175; } 36%, 58% { stroke-dasharray: 0 440; stroke-width: 20; stroke-dashoffset: -220; } 66% { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -225; } 86% { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -395; } 94%, to { stroke-dasharray: 0 440; stroke-width: 20; stroke-dashoffset: -440; } }
+        @keyframes ringD { from, 8% { stroke-dasharray: 0 440; stroke-width: 20; stroke-dashoffset: 0; } 16% { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -5; } 36% { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -175; } 44%, 50% { stroke-dasharray: 0 440; stroke-width: 20; stroke-dashoffset: -220; } 58% { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -225; } 78% { stroke-dasharray: 40 400; stroke-width: 30; stroke-dashoffset: -395; } 86%, to { stroke-dasharray: 0 440; stroke-width: 20; stroke-dashoffset: -440; } }
+        /* --- FIN ESTILOS NUEVO LOADER --- */
     </style>
 </head>
 <body>
@@ -440,7 +460,16 @@
         </div>
         <div class="form-actions">
             <button type="submit" class="btn-primary" id="registerBtn" data-translate="registerBtnText">🚀 ¡Registrarme!</button>
-            <div class="loader" id="registerLoader"><div class="spinner"></div><span data-translate="registerLoaderText">Registrando...</span></div>
+            <!-- CAMBIO: Nuevo Loader -->
+            <div class="loader" id="registerLoader">
+                <svg viewBox="0 0 240 240" height="240" width="240" class="loader-svg">
+                    <circle stroke-linecap="round" stroke-dashoffset="-330" stroke-dasharray="0 660" stroke-width="20" stroke="#000" fill="none" r="105" cy="120" cx="120" class="loader-ring loader-ring-a"></circle>
+                    <circle stroke-linecap="round" stroke-dashoffset="-110" stroke-dasharray="0 220" stroke-width="20" stroke="#000" fill="none" r="35" cy="120" cx="120" class="loader-ring loader-ring-b"></circle>
+                    <circle stroke-linecap="round" stroke-dasharray="0 440" stroke-width="20" stroke="#000" fill="none" r="70" cy="120" cx="85" class="loader-ring loader-ring-c"></circle>
+                    <circle stroke-linecap="round" stroke-dasharray="0 440" stroke-width="20" stroke="#000" fill="none" r="70" cy="120" cx="155" class="loader-ring loader-ring-d"></circle>
+                </svg>
+                <span data-translate="registerLoaderText"></span>
+            </div>
         </div>
     </form>
 </div>
@@ -477,7 +506,16 @@
         </div>
         <div class="form-actions">
             <button type="submit" class="btn-secondary" id="checkBtn" data-translate="checkBtnText">🔍 Verificar Asistencia</button>
-            <div class="loader" id="attendanceLoader"><div class="spinner"></div><span data-translate="attendanceLoaderText">Verificando...</span></div>
+             <!-- CAMBIO: Nuevo Loader -->
+            <div class="loader" id="attendanceLoader">
+                <svg viewBox="0 0 240 240" height="240" width="240" class="loader-svg">
+                    <circle stroke-linecap="round" stroke-dashoffset="-330" stroke-dasharray="0 660" stroke-width="20" stroke="#000" fill="none" r="105" cy="120" cx="120" class="loader-ring loader-ring-a"></circle>
+                    <circle stroke-linecap="round" stroke-dashoffset="-110" stroke-dasharray="0 220" stroke-width="20" stroke="#000" fill="none" r="35" cy="120" cx="120" class="loader-ring loader-ring-b"></circle>
+                    <circle stroke-linecap="round" stroke-dasharray="0 440" stroke-width="20" stroke="#000" fill="none" r="70" cy="120" cx="85" class="loader-ring loader-ring-c"></circle>
+                    <circle stroke-linecap="round" stroke-dasharray="0 440" stroke-width="20" stroke="#000" fill="none" r="70" cy="120" cx="155" class="loader-ring loader-ring-d"></circle>
+                </svg>
+                <span data-translate="attendanceLoaderText"></span>
+            </div>
         </div>
     </form>
 </div>
@@ -543,12 +581,12 @@
             labelBirthDate: "🎂 Fecha de Nacimiento:",
             labelAge: "🔢 Edad:",
             registerBtnText: "🚀 ¡Registrarme!",
-            registerLoaderText: "Registrando tu información... ⏳",
+            registerLoaderText: "Procesando la Información...",
             attSubtitle: "¡Qué bueno verte de nuevo! 😊",
             labelFullNameCheck: "🏷️ Nombre y Apellido:",
             labelPhoneCheck: "📱 Tu Número de Teléfono (Opcional)",
             checkBtnText: "🔍 Verificar Asistencia",
-            attendanceLoaderText: "Verificando tu registro... 🔍",
+            attendanceLoaderText: "Procesando la Información... ",
             successTitle: "¡Excelente!",
             welcomeBackTitle: "¡Qué bueno verte!",
             errorTitle: "¡Oops!",
@@ -590,12 +628,12 @@
             labelBirthDate: "🎂 Date of Birth:",
             labelAge: "🔢 Age:",
             registerBtnText: "🚀 Register Me!",
-            registerLoaderText: "Registering your information... ⏳",
+            registerLoaderText: "Processing Information...",
             attSubtitle: "Great to see you again! 😊",
             labelFullNameCheck: "🏷️ Full Name:",
             labelPhoneCheck: "📱 Your Phone Number (Optional)",
             checkBtnText: "🔍 Check Attendance",
-            attendanceLoaderText: "Verifying your registration... 🔍",
+            attendanceLoaderText: "Processing Information...",
             successTitle: "Excellent!",
             welcomeBackTitle: "Great to see you!",
             errorTitle: "Oops!",
@@ -634,7 +672,6 @@
         confirmation: document.getElementById('confirmationScreen')
     };
 
-    // CAMBIO: Se añade la propiedad "format" a cada país
     const countryCodes = [
         { name: "Panamá", code: "507", flag: "🇵🇦", format: [4, 4] },
         { name: "USA", code: "1", flag: "🇺🇸", format: [3, 3, 4] },
@@ -760,12 +797,11 @@
         if(currentDay) daySelect.value = currentDay;
     }
 
-    // CAMBIO: Función genérica para formatear números de teléfono
     function formatPhoneNumber(input, countryCode) {
         if (input.value.toUpperCase() === 'N/A') return;
 
         const country = countryCodes.find(c => c.code === countryCode);
-        if (!country || !country.format) { // Si el país no tiene formato, solo limpiar
+        if (!country || !country.format) {
             input.value = input.value.replace(/[^\d]/g, '');
             return;
         }
@@ -815,7 +851,6 @@
     document.getElementById('naBtnInvitedBy').addEventListener('click', () => { document.getElementById('invitedBy').value = 'N/A'; });
     document.getElementById('naBtnPhone').addEventListener('click', () => { document.getElementById('phone').value = 'N/A'; });
 
-    // CAMBIO: Event listeners refactorizados para usar la nueva función de formato
     document.getElementById('phone').addEventListener('input', (e) => {
         formatPhoneNumber(e.target, document.getElementById('countryCode').value);
     });
